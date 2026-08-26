@@ -1,0 +1,12 @@
+# Enable URL rewriting
+RewriteEngine On
+RewriteBase /hivex-labs/users/
+
+# Redirect requests to hive.php if file/folder doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ hive.php [QSA,L]
+
+# Optional: hide .php extension
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [L]

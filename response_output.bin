@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HiveX Labs – Creative Portfolio</title>
+
+<!-- Favicon -->
+ <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0f172a">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* =========================
+   COLOR SYSTEM
+========================= */
+:root{
+    --bg: radial-gradient(1200px 600px at 10% -10%, #060607 0%, #020202 45%);
+    --muted: #c7d2fe;
+    --accent: #3b82f6;
+    --cyan: #93c5fd;
+    scroll-behavior: smooth;
+}
+
+[data-theme="light"]{
+    --bg: linear-gradient(180deg, #eaf2ff 0%, #f8fbff 60%);
+    --muted:#1e3a8a;
+    --accent:#1d4ed8;
+    --cyan:#60a5fa;
+}
+
+/* =========================
+   BASE
+========================= */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+/* =========================
+   GLOBAL TECH NETWORK BG
+========================= */
+
+html, body {
+    height:100%;
+    width:100%;
+    background: #05070dc4;
+    color: var(--muted);
+}
+
+body{
+    position:relative;
+    overflow-x:hidden;
+}
+
+
+a{text-decoration:none;color:inherit;}
+
+/* =========================
+   CONTAINER (Transparent)
+========================= */
+.container{
+    
+    max-width:1200px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:24px;
+    padding-right:24px;
+}
+
+.page-wrapper {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    border-radius: 16px;
+
+   
+
+    border: 1px solid rgba(0, 235, 250, 0.3);
+    
+
+    transition: all 0.35s ease;
+    overflow: hidden;
+}
+
+
+/* Remove glow on scroll */
+.page-wrapper.scrolled {
+    border: 1px solid transparent;
+    box-shadow: none;
+}
+
+
+
+
+/* =========================
+   SECTIONS
+========================= */
+section{padding:30px 0;}
+h2,h3{color:var(--accent);text-align:center;}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer{
+    padding:60px 0 30px;
+    text-align:center;
+    color:var(--muted);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .hero-content{grid-template-columns:1fr;text-align:center;padding-top:140px;}
+    .hero-visual{display:none;}
+}
+
+.whatsapp-float{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background: #25D366;
+    color:#fff;
+    font-size:28px;
+
+    border-radius:50%;
+    text-decoration:none;
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.25),
+        0 0 12px rgba(37,211,102,0.6);
+
+    z-index:9999;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.whatsapp-float:hover{
+    transform: scale(1.1);
+    box-shadow:
+        0 8px 22px rgba(0,0,0,0.35),
+        0 0 20px rgba(37,211,102,0.9);
+}
+
+/* Pulse Animation */
+.whatsapp-float::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    background:rgba(37,211,102,0.5);
+    animation:pulse 2s infinite;
+    z-index:-1;
+}
+
+@keyframes pulse{
+    0% { transform: scale(1); opacity:0.7; }
+    70% { transform: scale(1.5); opacity:0; }
+    100% { transform: scale(1.5); opacity:0; }
+}
+
+/* =========================
+   THIN FANCY DIVIDER
+========================= */
+.fancy-divider {
+    width: 100%;
+    height: 4px; /* thin line */
+    margin: 50px 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    background: linear-gradient(
+        90deg,
+        rgba(0,235,250,0.4) 0%,
+        rgba(59,130,246,0.6) 50%,
+        rgba(0,235,250,0.4) 100%
+    );
+   
+}
+
+.fancy-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.3);
+    filter: blur(6px);
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -50%; }
+    100% { left: 100%; }
+}
+
+/* =========================
+   REAL HEXAGON BACKGROUND
+========================= */
+
+
+/* HEX GRID LAYER */
+.circuit-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(90deg, rgba(0,234,255,0.25) 1px, transparent 1px),
+        linear-gradient(60deg, rgba(0,234,255,0.25) 1px, transparent 1px),
+        linear-gradient(-60deg, rgba(0,234,255,0.25) 1px, transparent 1px);
+
+    background-size: 80px 140px;
+    opacity: 0.25;
+}
+.circuit-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background: #05070d;
+
+    background-image:
+      radial-gradient(circle at 50% 50%, transparent 34px, rgba(0,234,255,0.35) 35px, rgba(0,234,255,0.35) 36px, transparent 37px);
+
+    background-size: 70px 60.62px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="circuit-bg"></div>
+
+    <!-- WhatsApp Floating Button -->
+<a href="https://wa.me/254710484154?text=Hello%20HiveX%20Labs,%20I%20would%20like%20to%20inquire%20about%20your%20services."
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="Chat with us on WhatsApp">
+   <i class="fab fa-whatsapp"></i>
+</a>
+
+    
+<header class="main-header">
+
+    <div class="container">
+        <div class="header-left">
+                            <img src="/uploads/1770146339_HIVES.png" 
+     alt="Logo" class="site-logo">
+                        
+        </div>
+
+        <nav class="header-nav" id="navMenu">
+            <a href="#about">About</a>
+            <div class="dropdown">
+                <a href="#softwares">Softwares</a>
+                <div class="dropdown-menu">
+                    <a href="/users/product.php?type=pos">Hivex POS</a>
+                    <a href="/users/product.php?type=university">University/College Portal</a>
+                    <a href="s/users/product.php?type=rental">HiveX Rental Management</a>
+                    <a href="/users/product.php?type=roi">HiveX Return on Investment</a>
+                </div>
+            </div>
+            <a href="#portfolio">Projects</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="/hivex-labs/users/feedback.php">Feedback</a>
+        </nav>
+
+        <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<style>
+/* GLOBAL BG (visible on all sides) */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(120deg, #02061700, #0f172a00);
+    color: #fff;
+}
+
+/* HEADER */
+.main-header {
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 1100px;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(6px);
+    border-radius: 6px;
+    border: 1px solid transparent;
+    z-index: 9999;
+    transition: all .35s ease;
+    pointer-events: auto;
+}
+
+.main-header.scrolled {
+    background: rgba(32, 32, 32, 0);
+    border: 1px solid rgba(0, 255, 255, 0.6);
+    
+}
+
+
+/* This is the container — the only part that is boxed */
+.main-header .container {
+    max-width: 1330px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+}
+
+
+/* Header content styles */
+.site-logo { height: 90px; }
+.site-title { font-size: 20px; font-weight: 700; color: var(--cyan); }
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-nav { display: flex; 
+    gap: 24px; 
+    margin-left: auto;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dropdown > a::after {
+    content: '▼';
+    font-size: 10px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(32, 32, 32, 0.95);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 8px;
+    min-width: 220px;
+    margin-top: 10px;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.25s ease;
+    pointer-events: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown.open .dropdown-menu {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-menu a {
+    padding: 12px 16px;
+    color: #fcf9f9;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--accent);
+    padding-left: 20px;
+}
+.header-nav a {
+    color: #fcf9f9;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .25s;
+}
+.header-nav a:hover { color: var(--accent); }
+
+.hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; margin-left: auto; touch-action: manipulation; }
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px;
+}
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .header-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 10000;
+        background: rgba(0, 0, 0, 0.94);
+        padding: 20px 20px 24px;
+        gap: 16px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+    }
+    .header-nav.open { display: flex; }
+    
+    .dropdown-menu {
+        position: static;
+        background: rgba(0, 0, 0, 0.85);
+        border: none;
+        border-top: 1px solid rgba(0, 255, 136, 0.2);
+        border-radius: 0;
+        min-width: auto;
+        margin-top: 8px;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .dropdown.open .dropdown-menu {
+        display: flex;
+        opacity: 1;
+        max-height: 500px;
+    }
+    
+    .hamburger {
+        display: flex;
+        padding: 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        position: relative;
+        z-index: 10001;
+        pointer-events: auto;
+        touch-action: manipulation;
+        transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .hamburger:hover {
+        background: rgba(255, 255, 255, 0.14);
+        transform: translateY(-1px);
+    }
+    .hamburger span {
+        width: 32px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 999px;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .hamburger.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.open span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerBtn = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownLink = dropdown ? dropdown.querySelector('a') : null;
+
+    if (hamburgerBtn && navMenu) {
+        const toggleNav = () => {
+            const isOpen = navMenu.classList.toggle('open');
+            document.body.classList.toggle('menu-open', isOpen);
+            hamburgerBtn.classList.toggle('open', isOpen);
+            hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+            if (!isOpen && dropdown) {
+                dropdown.classList.remove('open');
+            }
+        };
+
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        hamburgerBtn.addEventListener('click', toggleNav);
+        hamburgerBtn.addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            toggleNav();
+        });
+        hamburgerBtn.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleNav();
+            }
+        });
+
+        document.querySelectorAll('#navMenu > a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                if (dropdown) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        });
+    }
+
+    if (dropdownLink) {
+        dropdownLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle('open');
+        });
+    }
+
+    if (dropdown) {
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                dropdown.classList.remove('open');
+                if (navMenu) {
+                    navMenu.classList.remove('open');
+                }
+                document.body.classList.remove('menu-open');
+            });
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (dropdown && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('open');
+        }
+    });
+});
+</script>
+<div class="page-wrapper">
+    <!-- HERO -->
+    <section id="home">
+      <div class="container">
+        
+<div class="hero-text">
+    <h1>
+        <span class="line1"></span><br>
+        <span class="line2"></span>
+    </h1>
+    <p></p>
+    <a class="hero-btn" href="#"></a>
+</div>
+
+<style>
+/* HERO FULL BACKGROUND */
+#home {
+    min-height: 75vh;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    display: flex;
+    justify-content: flex-start; /* push left */
+    align-items: center;
+    padding: 0 6%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* Gradient overlay so text remains legible */
+#home::before {
+    content:"";
+    position:absolute;
+    inset:0;
+   
+    z-index:1;
+    pointer-events: none; /* fixes button */
+}
+
+/* Hero text */
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text h1 {
+    font-size: clamp(46px, 6vw, 70px);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+/* Line 1 stays left */
+.hero-text h1 .line1 {
+    text-align: center;
+}
+
+/* Line 2 drops and is centered relative to line1 */
+.hero-text h1 .line2 {
+    display: block;
+    text-align: center;
+    margin-top: 0.3em;
+    font-size: clamp(50px, 7vw, 80px);
+    color: #fa8500;
+    font-weight: 700;
+}
+
+/* Paragraph */
+.hero-text p {
+    font-size: clamp(16px, 2vw, 20px);
+    color: #fa8500;
+    margin: 0 auto 32px auto; /* centers the block horizontally */
+    max-width: 550px;
+    text-align: center; /* centers the text inside the paragraph */
+}
+
+/* Button */
+.hero-btn {
+    display: block; /* ensures it behaves like a button */
+    padding: 16px 32px;
+    border-radius: 909px;
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    color: #0a0a0a;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease;
+    text-align: center; /* centers text inside button */
+}
+
+
+.hero-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(59,130,246,.4);
+}
+
+/* Hero orbs */
+.hero-visual { position: relative; height: 450px; }
+.orb {
+    position: absolute;
+    border-radius:50%;
+    filter: blur(80px);
+    opacity:.45;
+    animation: float 10s ease-in-out infinite alternate;
+}
+@keyframes float { from{transform:translate(0,0);} to{transform:translate(20px,-30px);} }
+
+@media (max-width: 768px) {
+
+    #home {
+        justify-content: flex-start;   /* keep same as desktop */
+        text-align: left;              /* keep same as desktop */
+        padding: 0 6%;                 /* keep same as desktop */
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero-text h1 {
+        text-align: left;              /* keep same as desktop */
+        font-size: 22px;               /* smaller on mobile */
+        text-transform: uppercase;     /* capital letters */
+    }
+
+    .hero-text h1 .line2 {
+        font-size: 32px;               /* smaller on mobile */
+    }
+
+    .hero-text p {
+        font-size: 14px;               /* smaller paragraph on mobile */
+        text-align: left;              /* align left like title */
+        margin-left: 0;
+    }
+
+    .hero-btn {
+        display: inline-block;         /* keep same as desktop */
+    }
+}
+
+</style>
+
+<script>
+if (typeof heroSlides === 'undefined') {
+    var heroSlides = [{"id":"19","main_title":"WE DESIGN . WE BUILD ","sub_title":"We build websites, web apps, software, and digital experiences that move businesses forward \u2014 powered by ideas, precision, and a few cups of coffee. \u2615","button_text":"View Our Projects","button_link":"users\/portfolio.php","updated_at":"2026-04-15 16:46:40","image":"uploads\/hero_1776271600.jpg"}];
+}
+
+let current = 0;
+
+function changeHero() {
+    const slide = heroSlides[current];
+
+    // ✅ FIXED IMAGE PATH
+    document.querySelector("#home").style.backgroundImage = `url('/${slide.image}')`;
+
+    /* Safety fallback if image missing */
+    if (!slide.image) {
+        document.querySelector("#home").style.backgroundImage = `url('/uploads/default.jpg')`;
+    }
+
+    /* Split main_title into two lines */
+    const title = slide.main_title || 'We Design . We Build . You Grow';
+    const parts = title.split('You Grow');
+
+    document.querySelector(".hero-text .line1").textContent =
+        (parts[0] || 'We Design . We Build .').trim();
+
+    document.querySelector(".hero-text .line2").textContent = 'You Grow';
+
+    document.querySelector(".hero-text p").textContent = slide.sub_title || '';
+    document.querySelector(".hero-btn").textContent = slide.button_text || '';
+    document.querySelector(".hero-btn").href = slide.button_link || '#';
+
+    current = (current + 1) % heroSlides.length;
+}
+
+changeHero();
+setInterval(changeHero, 6000);
+</script>      </div>
+    </section>
+
+<section id="hero-tools">
+    
+<div class="marquee-container">
+    <div class="marquee-track">
+                    <img src="/uploads/css.png" 
+     alt="css">
+                    <img src="/uploads/Figma-1-logo.png" 
+     alt="figma">
+                    <img src="/uploads/js.webp" 
+     alt="js">
+                    <img src="/uploads/logocorel.png" 
+     alt="coreldraw">
+                    <img src="/uploads/Laravel-Logo.wine (1).png" 
+     alt="larvel">
+                    <img src="/uploads/ps.png" 
+     alt="ps">
+                    <img src="/uploads/Python-Emblem.png" 
+     alt="python">
+                    <img src="/uploads/Mysql_logo.png" 
+     alt="mysql">
+                    <img src="/uploads/php.png" 
+     alt="php">
+        
+        <!-- Duplicate for seamless loop -->
+                    <img src="/uploads/css.png" 
+     alt="css">
+                    <img src="/uploads/Figma-1-logo.png" 
+     alt="figma">
+                    <img src="/uploads/js.webp" 
+     alt="js">
+                    <img src="/uploads/logocorel.png" 
+     alt="coreldraw">
+                    <img src="/uploads/Laravel-Logo.wine (1).png" 
+     alt="larvel">
+                    <img src="/uploads/ps.png" 
+     alt="ps">
+                    <img src="/uploads/Python-Emblem.png" 
+     alt="python">
+                    <img src="/uploads/Mysql_logo.png" 
+     alt="mysql">
+                    <img src="/uploads/php.png" 
+     alt="php">
+            </div>
+</div>
+
+<style> 
+#hero-tools {
+    width: 100%;
+    padding: 59px 0;
+    background: rgba(30, 59, 126, 0);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+    padding: 20px 0;
+
+    background: rgba(15, 23, 42, 0);
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(0, 235, 250, 0.35);
+
+    box-shadow:
+        0 0 10px rgba(0, 235, 250, 0.25);
+}
+.marquee-container {
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+    );
+}
+
+.marquee-track {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    width: fit-content;
+
+    animation: marquee 45s linear infinite;
+    
+}
+
+/* TRUE CONTINUOUS SCROLL */
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+    will-change: transform;
+}
+
+
+
+.marquee-track img {
+    height: 49px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+.marquee-track img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+</style></section>
+<div class="fancy-divider"></div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        
+<section id="about" class="about-section">
+    <div class="about-wrapper">
+        
+        <div class="about-card">
+            
+            <div class="about-header">
+                <h2>About HiveX Labs</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="about-content">
+                <p>
+                    We are HiveX Labs, a creative tech hub focused on building modern websites, digital systems, and smart design solutions. We help businesses and individuals turn their ideas into clean, functional, and professional digital products. Our goal is to deliver quality work, simple solutions, and reliable support for every project we handle.                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+
+/* ===== SECTION WRAPPER ===== */
+.about-section{
+    display:flex;
+    justify-content:center;
+}
+/* ===== CARD CONTAINER ===== */
+.about-card{
+    position:relative;
+    background: #111827;
+    border-radius:18px;
+    padding:60px 50px;
+    max-width:950px;
+    width:100%;
+    color: #fff;
+    overflow:hidden;
+    transition:0.3s ease;
+    align-content: center;
+}
+
+/* BLUE TOP ACCENT */
+.about-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:6px;
+    background: #00ebfa;
+}
+
+
+
+/* HOVER EFFECT */
+.about-card:hover{
+    transform:translateY(-6px);
+}
+
+/* HEADER */
+.about-header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-tag{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#00ebfa;
+    margin-bottom:10px;
+}
+
+.about-header h2{
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+/* DIVIDER */
+.divider{
+    width:50px;
+    height:3px;
+    background:#00ebfa;
+    margin:0 auto;
+    border-radius:5px;
+}
+
+/* CONTENT */
+.about-content p{
+    font-size:16px;
+    line-height:1.9;
+    color:#cbd5df;
+    text-align:center;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .about-card{
+        padding:40px 25px;
+    }
+
+    .about-header h2{
+        font-size:24px;
+    }
+}
+
+</style>
+      </div>
+    </section>
+<div class="fancy-divider"></div>
+
+    <!-- SOFTWARES -->
+    <section id="softwares">
+      <div class="container">
+        
+<section id="softwares">
+    <div class="section-container">
+        <h2>Our Software Solutions</h2>
+        <div class="softwares-list">
+                            <div class="software-card">
+                                            
+                                        <div class="card-content">
+                        <h4>HIVEX POS</h4>
+                        <p class="card-description">A modern, web-based point-of-sale system for smart business management....</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/users/software_detail.php?key=pos" class="view-more-btn">
+                            View More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                    </div>
+    </div>
+</section>
+
+<style>
+.card-icon{
+    font-size:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(135deg,#00ebfa,#0084ff);
+    border-radius:12px;
+    width:50px;
+    height:50px;
+    color:#fff;
+    margin-bottom:15px;
+}
+.card-image{
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:15px;
+    background:#f8f9fa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.hero-thumb{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    transition:all 0.3s ease;
+}
+.hero-thumb:hover{
+    transform:scale(1.05);
+}
+.software-card{
+    display:flex;
+    flex-direction:column;
+    padding:28px;
+    background:#ffffff;
+    border:2px solid #e0f0ff;
+    border-radius:16px;
+    transition:all 0.3s ease;
+    min-height:280px;
+    position:relative;
+    box-shadow:0 4px 12px rgba(0,132,255,0.08);
+}
+.software-card:hover{
+    border-color:#00ebfa;
+    background:#ffffff;
+    transform:translateY(-8px);
+    box-shadow:0 16px 40px rgba(0,132,255,0.2);
+}
+.card-content{
+    flex-grow:1;
+    margin-bottom:15px;
+}
+.software-card h4{
+    color:#00a8cc;
+    margin-bottom:12px;
+    font-size:20px;
+    font-weight:700;
+}
+.card-description{
+    color:#4a5568;
+    line-height:1.7;
+    font-size:14px;
+    margin:0;
+}
+.card-footer{
+    display:flex;
+    justify-content:flex-start;
+    margin-top:auto;
+}
+.view-more-btn{
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 20px;
+    background:linear-gradient(135deg,#00ebfa,#0084ff);
+    border-radius:8px;
+    transition:all 0.2s ease;
+}
+.view-more-btn:hover{
+    background:linear-gradient(135deg,#0084ff,#006db3);
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,132,255,0.3);
+}
+.softwares{
+    padding:80px 6%;
+    background:#020617;
+    display:flex;
+    justify-content:center;
+}
+.softwares .section-container{
+    max-width:1100px;
+    width:100%;
+    background:#020617;
+    border-radius:20px;
+    padding:40px;
+    border:1px solid #00ebfa;
+}
+.softwares h2{
+    color:#00ebfa;
+    text-align:center;
+    margin-bottom:90px;
+    font-size:32px;
+}
+.softwares-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:24px;
+}
+@media (max-width:768px){
+    .softwares-list{grid-template-columns:1fr;}
+}
+</style>
+      </div>
+    </section>
+<div class="fancy-divider"></div>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        
+<section id="services">
+    <div class="section-container">
+
+        <h2>Our Solutions</h2>
+
+        <div class="services-list">
+                            <div class="service">
+                    
+<div class="icon">
+    <i class="fa-code"></i>
+</div>
+
+                    <div>
+                        <h4>CODING &amp; PROGRAMMING</h4>
+                        <p>We build smart, fast, and reliable websites and systems using clean code. Whether it’s a website or a custom system, we focus on performance, security, and smooth user experience.</p>
+                    </div>
+                </div>
+                            <div class="service">
+                    
+<div class="icon">
+    <i class="fa-solid fa-bullhorn"></i>
+</div>
+
+                    <div>
+                        <h4>BRANDING</h4>
+                        <p>We help businesses build a strong and recognizable identity. This includes logo design, brand colors, typography, and visual style. Our branding work helps your business stand out, look consistent, and communicate clearly with customers.</p>
+                    </div>
+                </div>
+                            <div class="service">
+                    
+<div class="icon">
+    <i class="fa-code"></i>
+</div>
+
+                    <div>
+                        <h4>MOTION &amp; UI DESIGN</h4>
+                        <p>We design smooth animations and user-friendly interfaces that improve how people interact with your product. This includes motion graphics, simple animations, and UI designs for websites and apps. We focus on clear layouts, smooth movement, and good user experience.</p>
+                    </div>
+                </div>
+                            <div class="service">
+                    
+<div class="icon">
+    <i class="fa-solid fa-pen-nib"></i>
+</div>
+
+                    <div>
+                        <h4>GRAPHICS DESIGN</h4>
+                        <p>We create clean and attractive designs that help your business look professional. This includes posters, flyers, social media designs, banners, and digital artwork. Our goal is to make designs that are easy to understand, eye-catching, and suitable for your brand.</p>
+                    </div>
+                </div>
+                    </div>
+
+    </div>
+</section>
+
+<style>
+    .icon{
+    font-size:22px;
+    min-width:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#00ebfa,#0084ff);
+    border-radius:12px;
+    width:50px;
+    height:50px;
+    color:#fff;
+}
+
+
+    .service:hover{
+        border-color:#00ebfa;
+        background:linear-gradient(135deg,rgba(0,235,250,0.05),rgba(0,132,255,0.05));
+        transform:translateY(-4px);
+        box-shadow:0 8px 24px rgba(0,235,250,0.1);
+        transition:all 0.3s ease;
+    }
+
+    .service h4{
+        color:#00ebfa;
+        margin-bottom:8px;
+    }
+    
+.services{
+    padding:80px 6%;
+    background:#020617;
+    display:flex;
+    justify-content:center;
+}
+
+.services .section-container{
+    max-width:1100px;
+    width:100%;
+    background:#020617;
+    border-radius:20px;
+    padding:40px;
+    border:1px solid #00ebfa;
+}
+
+.services h2{
+    color:#00ebfa;
+    margin-bottom:30px;
+}
+
+.services-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+.service{
+    background:#020617;
+    border:1px solid rgba(147,197,253,0.2);
+    border-radius:16px;
+    padding:20px;
+    display:flex;
+    gap:14px;
+}
+
+.service h4{color:#93c5fd;}
+.service p{color:#c7d2fe;font-size:14px;}
+</style>
+      </div>
+    </section>
+<div class="fancy-divider"></div>
+
+    <!-- PORTFOLIO -->
+    <section id="products">
+      <div class="container">
+        
+<section id="portfolio">
+    <div class="section-container">
+        <h2>Our Projects</h2>
+
+        <!-- FILTER BAR -->
+        <div class="filters">
+            <select onchange="location=this.value + '#portfolio'">
+                                    <option 
+                        value="?cat=Graphic+Design"
+                        selected>
+                        Graphic Design                    </option>
+                                    <option 
+                        value="?cat=Web+Design"
+                        >
+                        Web Design                    </option>
+                                    <option 
+                        value="?cat=Motion+%2F+UI+Design"
+                        >
+                        Motion / UI Design                    </option>
+                                    <option 
+                        value="?cat=Branding"
+                        >
+                        Branding                    </option>
+                                    <option 
+                        value="?cat=Software+Engineering"
+                        >
+                        Software Engineering                    </option>
+                            </select>
+
+            <div class="filter-links">
+                                    <a href="?cat=Graphic+Design#portfolio"
+                       class="active">
+                        Graphic Design                    </a>
+                                    <a href="?cat=Web+Design#portfolio"
+                       class="">
+                        Web Design                    </a>
+                                    <a href="?cat=Motion+%2F+UI+Design#portfolio"
+                       class="">
+                        Motion / UI Design                    </a>
+                                    <a href="?cat=Branding#portfolio"
+                       class="">
+                        Branding                    </a>
+                                    <a href="?cat=Software+Engineering#portfolio"
+                       class="">
+                        Software Engineering                    </a>
+                            </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="projects">
+
+            
+                <div class="project-big">
+
+                        <img loading="lazy"
+         src="/uploads/projects/1770331385_tourscopy.jpg"
+         alt="Hiking/Tour Poster">
+
+                    <div class="caption">
+                        Hiking/Tour Poster                    </div>
+
+                </div>
+
+            
+                <div class="project-big">
+
+                        <img loading="lazy"
+         src="/uploads/projects/1770065627_pastry (3).png"
+         alt="Bakery poster">
+
+                    <div class="caption">
+                        Bakery poster                    </div>
+
+                </div>
+
+            
+                <div class="project-big">
+
+                        <img loading="lazy"
+         src="/uploads/projects/1770041152_lands.jpg"
+         alt="land selling poster">
+
+                    <div class="caption">
+                        land selling poster                    </div>
+
+                </div>
+
+            
+                <div class="project-big">
+
+                        <img loading="lazy"
+         src="/uploads/projects/1770041106_wedding card.png"
+         alt="Wedding invitation card">
+
+                    <div class="caption">
+                        Wedding invitation card                    </div>
+
+                </div>
+
+            
+        </div>
+    </div>
+</section>
+
+<style>
+/* ===== PORTFOLIO SECTION ===== */
+.portfolio{
+    padding:60px 6%;
+    background:#0f1316; 
+    display:flex;
+    justify-content:center;
+}
+
+.portfolio .container{
+    background: rgba(4,5,6,0.95);
+    border-radius:20px;
+    padding:40px 30px;
+    max-width:1200px;
+    border:1px solid #00ebfa;
+}
+
+/* Section title */
+.portfolio h2{
+    text-align:center;
+    font-size:30px;
+    color: #00ebfa;
+    margin-bottom:40px;
+}
+
+/* FILTERS */
+.filters{
+    display:flex;
+    justify-content:center;
+    margin-bottom:50px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.filter-links{
+    display:flex;
+    gap:28px;
+}
+
+.filter-links a{
+    text-decoration:none;
+    color: #9fb6c2;
+    font-size:15px;
+    position:relative;
+    transition: all .25s ease;
+}
+
+.filter-links a.active,
+.filter-links a:hover{
+    color: #00ebfa;
+}
+
+.filter-links a.active::after{
+    content:'';
+    position:absolute;
+    bottom:-8px;
+    left:0;
+    width:100%;
+    height:2px;
+    background: #00ebfa;
+}
+
+/* Mobile dropdown */
+.filters select{
+    display:none;
+    background:#0f1316;
+    color:#fff;
+    padding:12px 16px;
+    border-radius:10px;
+    border:1px solid rgba(0,255,136,.2);
+    cursor:pointer;
+}
+
+/* PROJECTS — MODERN LAYOUT */
+.projects{
+    display:flex;
+    gap:24px;
+    overflow-x:auto;
+    padding-bottom:20px;
+    scroll-snap-type:x mandatory;
+}
+
+/* hide scrollbar */
+.projects::-webkit-scrollbar{
+    height:6px;
+}
+.projects::-webkit-scrollbar-thumb{
+    background:rgba(0,255,136,.25);
+    border-radius:10px;
+}
+
+/* Each project card – modern glass look */
+.project-big{
+    flex:0 0 auto;
+    width:300px;
+    scroll-snap-align:start;
+    border-radius:16px;
+    overflow:hidden;
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,255,136,0.05));
+    border: 1px solid rgba(0,255,136,0.25);
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    position:relative;
+}
+
+/* Hover effect – subtle lift + glow */
+.project-big:hover{
+    transform: translateY(-8px) scale(1.03);
+    border-color: rgba(0,255,136,0.45);
+}
+
+/* Project images */
+.project-big img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-bottom:1px solid rgba(0,255,136,0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-big a img:hover{
+    transform: scale(1.05);
+    cursor:pointer;
+}
+
+/* Caption overlay */
+.caption{
+    padding:12px 16px;
+    font-size:14px;
+    font-weight:600;
+    color:#00ebfa;
+    text-align:left;
+}
+
+/* Mobile tweaks */
+@media(max-width:768px){
+    .project-big{
+        width:85%;
+    }
+    .filters select{
+        display:block;
+    }
+    .filter-links{
+        display:none;
+    }
+}
+</style>
+      </div>
+    </section>
+<div class="fancy-divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        
+<section id="contact">
+    <div class="contact-wrapper">
+
+        <h2>Contact Us</h2>
+
+        
+        <div class="contact-info">
+                                            </div>
+
+        <form method="post" class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+    </div>
+</section>
+
+<style>
+/* Centered and smaller layout */
+#contact {
+    padding: 0px 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-wrapper {
+    width: 100%;
+    max-width: 600px;  /* smaller than before */
+    background: #0f172a;
+    border-radius: 18px;
+    padding: 35px;
+    border: 1px solid rgba(59,130,246,0.25);
+}
+
+#contact h2 {
+    color: #00ebfa;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.contact-info p {
+    margin-bottom: 8px;
+    color: #e6eafa;
+    font-size: 0.95rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.8);
+    background: #020617;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.contact-form button {
+    background: #00ebfa;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    color: #020617;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background: #0ac0e8;
+}
+
+.status {
+    margin-bottom: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+.status.success { color: #22c55e; }
+.status.error { color: #ef4444; }
+</style>
+      </div>
+    </section>
+<div class="fancy-divider"></div>
+
+    <!-- FEEDBACK DISPLAY -->
+    <section id="feedback">
+      <div class="container">
+        
+<section id="feedback">
+    <div class="section-container">
+
+        <h2>What Our Clients Say</h2>
+
+            <p>No feedback yet.</p>
+
+
+    </div>
+</section>
+
+<style>
+.feedback{
+    padding:80px 6%;
+    background:#010f2b;
+    display:flex;
+    justify-content:center;
+}
+
+.feedback .section-container{
+    max-width:1000px;
+    width:100%;
+    border-radius:20px;
+    padding:40px;
+    background:#020617;
+    border:1px solid rgba(59,130,246,0.25);
+    position:relative;
+}
+
+.feedback h2{
+    color:#00ebfa;
+    margin-bottom:30px;
+}
+
+/* SLIDER */
+
+.feedback-slider{
+    position:relative;
+    overflow:hidden;
+}
+
+.feedback-track{
+    display:flex;
+    gap:20px;
+    transition:transform 0.5s ease;
+}
+
+/* Cards */
+.feedback-card{
+    min-width:300px;
+    max-width:300px;
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:14px;
+    padding:20px;
+    background:rgba(255,255,255,0.03);
+    backdrop-filter: blur(6px);
+    flex-shrink:0;
+}
+
+.feedback-card .stars{
+    color:#f7ca05;
+    margin:8px 0;
+}
+
+.feedback-card p{
+    color:#c7d2fe;
+    font-size:14px;
+}
+
+/* NAV BUTTONS */
+
+.nav-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:#00ebfa;
+    color:#020617;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+    transition:0.3s ease;
+}
+
+.nav-btn:hover{
+    background:#38bdf8;
+    transform:translateY(-50%) scale(1.1);
+}
+
+.nav-btn.left{
+    left:-20px;
+}
+
+.nav-btn.right{
+    right:-20px;
+}
+
+</style>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const track = document.getElementById("feedbackTrack");
+    const next = document.getElementById("nextBtn");
+    const prev = document.getElementById("prevBtn");
+
+    let position = 0;
+    const cardWidth = 320; // 300 + gap
+    const visibleCards = 3;
+
+    next.addEventListener("click", () => {
+        const maxScroll = track.children.length - visibleCards;
+        if(position < maxScroll){
+            position++;
+            track.style.transform = `translateX(-${position * cardWidth}px)`;
+        }
+    });
+
+    prev.addEventListener("click", () => {
+        if(position > 0){
+            position--;
+            track.style.transform = `translateX(-${position * cardWidth}px)`;
+        }
+    });
+
+});
+</script>
+
+
+      </div>
+    </section></div> 
+<div class="fancy-divider"></div>
+
+<footer class="footer-wrapper">
+  <div class="footer-inner">
+
+    <div class="footer-grid">
+     
+      <!-- BRAND -->
+      <div class="footer-brand">
+        <h3>HiveX Labs</h3>
+        <p>Creative digital studio building modern web, design, and brand experiences.</p>
+      </div>
+      
+      <!-- QUICK LINKS -->
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Our Solutions</a>
+        <a href="#portfolio">Products</a>
+        <a href="#contact">Contact</a>
+        <a href="feedback.php">Feedback</a>
+      </div>
+
+      <!-- SOLUTIONS -->
+      <div class="footer-links">
+        <h3>Solutions</h3>
+        <a href="#">Web Design</a>
+        <a href="#">Graphic Design</a>
+        <a href="#">Branding</a>
+        <a href="#">UI/UX</a>
+      </div>
+
+      <!-- SOCIAL ICONS -->
+<div class="footer-socials">
+  <h3>Connect</h3>
+  <div class="social-icons">
+    <a href="https://twitter.com/staKknow" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+
+    <a href="https://linkedin.com/in/hivexlabs" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+
+    <a href="https://instagram.com/cent.nast" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://github.com/hivex-labs" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-github"></i>
+    </a>
+
+    <a href="https://facebook.com/HiveX_Labs" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+  </div>
+</div>
+
+
+       <!-- Legal -->
+       <div class="footer-legal">
+        <h3>Legal</h3>
+        <a href="/hivex-labs/users/privacy.php">Privacy Policy</a><br>
+        <a href="/hivex-labs/users/terms.php">Terms of Service</a>
+       </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+      <p>© 2025 HiveX Labs. Designed by Malik. All rights reserved.</p>
+    </div>
+  </div>
+</div>
+</footer>
+
+<style>
+/* =========================
+   MODERN FOOTER
+========================= */
+/* FOOTER WRAPPER (same width as page-wrapper) */
+.footer-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0 30px;
+}
+
+/* INNER FOOTER (Glass box like page-wrapper) */
+.footer-inner {
+    width: 100%;
+    max-width: 1200px;
+    padding: 60px 40px 30px;
+
+    background: rgba(15, 23, 42, 0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-radius: 16px;
+    border: 1px solid rgba(0, 235, 250, 0.3);
+    
+
+    color: #cbd5df;
+}
+
+.footer-inner h3 {
+    color: #00ebfa;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;   /* centers h3 */
+}
+
+.footer-inner p {
+    color: #cbd5df;
+    line-height: 1.6;
+    text-align: center;   /* centers paragraph */
+}
+
+/* Center EVERYTHING inside each footer column */
+.footer-grid > div {
+    text-align: center;
+}
+
+/* Center links properly */
+.footer-links a {
+    display: block;
+    margin-bottom: 8px;
+    color: #cbd5df;
+    transition: all .3s ease;
+}
+
+/* Center social icons */
+.footer-socials .social-icons {
+    display: flex;
+    justify-content: center; /* centers icons */
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* Fix paragraph alignment */
+.footer-inner p {
+    text-align: center;
+}
+
+
+.footer-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-links a{
+    display:block;
+    margin-bottom: 8px;
+    color:#cbd5df;
+    transition: all .3s ease;
+}
+
+.footer-links a:hover{
+    color: #00ebfa;
+    transform: translateX(4px);
+}
+
+.footer-socials .social-icons{
+    display:flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.footer-socials .social-icons a{
+    width: 40px;
+    height: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background: linear-gradient(135deg, #3b82f6, #93c5fd);
+    color:#fff;
+    font-size:16px;
+    transition: all .3s ease;
+}
+
+.footer-socials .social-icons a:hover{
+    transform: scale(1.2) rotate(10deg);
+}
+
+.footer-bottom{
+    text-align:center;
+    padding-top:20px;
+    border-top:1px solid rgba(0,235,250,0.2);
+    font-size:13px;
+    color:#94a3b8;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+        gap:30px;
+    }
+}
+
+@media(max-width:480px){
+    .footer-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+    .footer-socials .social-icons{
+        justify-content:center;
+    }
+}
+</style>
+
+
+<!-- JS SCRIPTS -->
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+const header = document.querySelector('.main-header');
+const pageWrapper = document.querySelector('.page-wrapper');
+
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        document.body.classList.toggle('menu-open', isOpen);
+    });
+    document.querySelectorAll('#navMenu > a').forEach(link => link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+    }));
+    document.querySelectorAll('.dropdown-menu a').forEach(link => link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+    }));
+}
+
+if (header) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) { header.classList.add('scrolled'); }
+        else { header.classList.remove('scrolled'); }
+    });
+}
+
+if (pageWrapper) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            pageWrapper.classList.add('scrolled');
+        } else {
+            pageWrapper.classList.remove('scrolled');
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>
