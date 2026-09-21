@@ -23,6 +23,10 @@ function asset_path($path) {
         $appRoot = '';
     }
 
+    if ($appRoot === '' && strpos($scriptName, '/hivex-labs/') !== false) {
+        $appRoot = '/hivex-labs';
+    }
+
     return ($appRoot === '' ? '' : $appRoot) . '/' . $path;
 }
 
@@ -215,5 +219,6 @@ if ($imagePath === '') {
             <?php endif; ?>
         </div>
     </div>
+    <?php include __DIR__ . "/../includes/cookie-consent.php"; ?>
 </body>
 </html>

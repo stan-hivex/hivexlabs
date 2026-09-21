@@ -24,7 +24,8 @@ a.btn {background:linear-gradient(90deg,#dc2626,#b91c1c);padding:6px 12px;border
     <?php if($messages->num_rows): ?>
         <?php while($m = $messages->fetch_assoc()): ?>
             <div class="row">
-                <div><strong><?=htmlspecialchars($m['name'])?></strong> (<?=htmlspecialchars($m['email'])?>)</div>
+                <div><strong><?=htmlspecialchars($m['name'])?></strong><br><?=htmlspecialchars($m['email'])?><br><?=htmlspecialchars($m['phone'] ?? '')?></div>
+                <div><strong>Project:</strong> <?=htmlspecialchars($m['project_type'] ?? '')?></div>
                 <div><?=htmlspecialchars($m['message'])?></div>
                 <div><?=htmlspecialchars($m['created_at'])?></div>
                 <div><a class="btn" href="contact_messages.php?delete=<?= $m['id'] ?>" onclick="return confirm('Delete this message?')">Delete</a></div>

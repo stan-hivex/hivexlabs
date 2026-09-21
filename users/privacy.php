@@ -18,6 +18,7 @@ $policies = $conn->query("SELECT * FROM privacy_policy ORDER BY id ASC")->fetch_
         <?php endforeach; ?>
     </div>
 </section>
+<?php include __DIR__ . "/../includes/cookie-consent.php"; ?>
 
 <style>
 #privacy-policy{

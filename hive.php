@@ -1,6 +1,13 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+$siteAppBase = rtrim(dirname(str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '')), '/');
+if (basename($siteAppBase) === 'users') {
+    $siteAppBase = dirname($siteAppBase);
+}
+if ($siteAppBase === '/' || $siteAppBase === '.') {
+    $siteAppBase = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,6 +124,14 @@ h2,h3{color:var(--accent);text-align:center;}
 @media(max-width:900px){
     .hero-content{grid-template-columns:1fr;text-align:center;padding-top:140px;}
     .hero-visual{display:none;}
+}
+
+@media(max-width:600px){
+    .container{padding-left:14px;padding-right:14px;}
+    .page-wrapper{width:100%;border-radius:10px;}
+    section{padding:22px 0;}
+    img,video,iframe{max-width:100%;}
+    body{overflow-x:hidden;}
 }
 
 .whatsapp-float{
@@ -375,8 +390,8 @@ h2,h3{color:var(--accent);text-align:center;}
        <!-- Legal -->
        <div class="footer-legal">
         <h3>Legal</h3>
-        <a href="/hivex-labs/users/privacy.php">Privacy Policy</a><br>
-        <a href="/hivex-labs/users/terms.php">Terms of Service</a>
+        <a href="<?= htmlspecialchars($siteAppBase, ENT_QUOTES, 'UTF-8') ?>/users/privacy.php">Privacy Policy</a><br>
+        <a href="<?= htmlspecialchars($siteAppBase, ENT_QUOTES, 'UTF-8') ?>/users/terms.php">Terms of Service</a>
        </div>
 
     </div>
@@ -388,6 +403,8 @@ h2,h3{color:var(--accent);text-align:center;}
   </div>
 </div>
 </footer>
+
+<?php include __DIR__ . "/includes/cookie-consent.php"; ?>
 
 <style>
 /* =========================

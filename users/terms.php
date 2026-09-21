@@ -17,6 +17,7 @@ $terms = $conn->query("SELECT * FROM terms_of_service ORDER BY id ASC")->fetch_a
         <?php endforeach; ?>
     </div>
 </section>
+<?php include __DIR__ . "/../includes/cookie-consent.php"; ?>
 
 <style>
 #terms-of-service{

@@ -9,6 +9,25 @@ $stmt = $conn->prepare(
 $stmt->bind_param("s", $cat);
 $stmt->execute();
 $projects = $stmt->get_result();
+
+$portfolioScriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+$portfolioAppBase = rtrim(dirname($portfolioScriptPath), '/');
+if (basename($portfolioAppBase) === 'users') {
+    $portfolioAppBase = dirname($portfolioAppBase);
+}
+if ($portfolioAppBase === '/' || $portfolioAppBase === '.') {
+    $portfolioAppBase = '';
+}
+
+function portfolioCategoryImageUrl(string $path, string $appBase): string
+{
+    if (preg_match('#^(https?:)?//#i', $path)) {
+        return $path;
+    }
+
+    $segments = array_map('rawurlencode', array_filter(explode('/', ltrim($path, '/')), 'strlen'));
+    return $appBase . '/' . implode('/', $segments);
+}
 ?>
 
 <section class="portfolio">
@@ -19,10 +38,10 @@ $projects = $stmt->get_result();
             <div class="project">
                 <?php if(!empty($p['link'])): ?>
                     <a href="<?= htmlspecialchars($p['link']) ?>" target="_blank">
-                        <img src="/hivex-labs/uploads/projects/<?= htmlspecialchars($p['image']) ?>">
+                        <img src="<?= htmlspecialchars(portfolioCategoryImageUrl('uploads/projects/' . $p['image'], $portfolioAppBase), ENT_QUOTES, 'UTF-8') ?>">
                     </a>
                 <?php else: ?>
-                    <img src="/hivex-labs/uploads/projects/<?= htmlspecialchars($p['image']) ?>">
+                    <img src="<?= htmlspecialchars(portfolioCategoryImageUrl('uploads/projects/' . $p['image'], $portfolioAppBase), ENT_QUOTES, 'UTF-8') ?>">
                 <?php endif; ?>
                 <h4><?= htmlspecialchars($p['title']) ?></h4>
             </div>

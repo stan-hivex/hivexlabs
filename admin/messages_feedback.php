@@ -35,6 +35,8 @@ $feedbacks = $conn->query("SELECT * FROM feedback GROUP BY name, email, message,
         <?php while($c = $contacts->fetch_assoc()): ?>
             <div style="margin-bottom:10px; padding:8px; border:1px solid #333; border-radius:6px;">
                 <strong><?=htmlspecialchars($c['name'])?></strong> (<?=htmlspecialchars($c['email'])?>)<br>
+                Phone: <?=htmlspecialchars($c['phone'] ?? '')?><br>
+                Project: <?=htmlspecialchars($c['project_type'] ?? '')?><br>
                 <?=htmlspecialchars($c['message'])?><br>
                 <small><?=htmlspecialchars($c['created_at'])?></small>
             </div>

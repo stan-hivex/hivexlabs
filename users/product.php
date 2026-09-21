@@ -761,5 +761,6 @@ function asset_path($path) {
             <p>&copy; 2026 HiveX Labs. All rights reserved.</p>
         </div>
     </footer>
+    <?php include __DIR__ . "/../includes/cookie-consent.php"; ?>
 </body>
 </html>

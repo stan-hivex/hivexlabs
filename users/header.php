@@ -2,16 +2,31 @@
 require_once __DIR__ . "/../config/db.php";
 $result = $conn->query("SELECT * FROM site_settings LIMIT 1");
 $settings = $result && $result->num_rows ? $result->fetch_assoc() : null;
+$headerLogoPath = trim($settings['logo'] ?? 'uploads/hive logo.png');
+$headerScriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+$headerAppBase = rtrim(dirname($headerScriptPath), '/');
+if (basename($headerAppBase) === 'users') {
+    $headerAppBase = dirname($headerAppBase);
+}
+if ($headerAppBase === '/' || $headerAppBase === '.') {
+    $headerAppBase = '';
+}
+
+if (preg_match('#^(https?:)?//#i', $headerLogoPath)) {
+    $headerLogoUrl = $headerLogoPath;
+} else {
+    $headerLogoPath = ltrim($headerLogoPath, '/');
+    $headerLogoParts = array_map('rawurlencode', array_filter(explode('/', $headerLogoPath), 'strlen'));
+    $headerLogoUrl = $headerAppBase . '/' . implode('/', $headerLogoParts);
+}
 ?>
 
 <header class="main-header">
 
     <div class="container">
         <div class="header-left">
-            <?php if ($settings && !empty($settings['logo'])): ?>
-                <img src="/<?= htmlspecialchars($settings['logo']) ?>" 
-     alt="Logo" class="site-logo">
-            <?php endif; ?>
+              <img src="<?= htmlspecialchars($headerLogoUrl, ENT_QUOTES, 'UTF-8') ?>"
+                  alt="HiveX Labs logo" class="site-logo">
             
         </div>
 
@@ -185,6 +200,25 @@ body.menu-open {
 
 /* Responsive */
 @media(max-width:768px){
+    .main-header {
+        top: 4px;
+        width: calc(100% - 16px);
+        max-width: none;
+    }
+
+    .main-header .container {
+        min-width: 0;
+        padding: 8px 12px;
+    }
+
+    .site-logo {
+        width: auto;
+        max-width: min(58vw, 220px);
+        height: auto;
+        max-height: 58px;
+        object-fit: contain;
+    }
+
     .header-nav {
         display: none;
         flex-direction: column;
@@ -196,6 +230,8 @@ body.menu-open {
         background: rgba(0, 0, 0, 0.94);
         padding: 20px 20px 24px;
         gap: 16px;
+        max-height: calc(100vh - 82px);
+        overflow-y: auto;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);

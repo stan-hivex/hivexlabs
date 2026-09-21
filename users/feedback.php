@@ -85,5 +85,6 @@ button{background: #00ebfa;padding:10px;border:none;border-radius:8px;color: #04
         <?php endif; ?>
     </div>
 </div>
+<?php include __DIR__ . "/../includes/cookie-consent.php"; ?>
 </body>
 </html>

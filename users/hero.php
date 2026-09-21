@@ -5,6 +5,15 @@ require_once __DIR__ . "/../config/db.php";
 $slides = $conn
     ->query("SELECT * FROM hero_section ORDER BY id ASC LIMIT 3")
     ->fetch_all(MYSQLI_ASSOC);
+
+$heroScriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+$heroAppBase = rtrim(dirname($heroScriptPath), '/');
+if (basename($heroAppBase) === 'users') {
+    $heroAppBase = dirname($heroAppBase);
+}
+if ($heroAppBase === '/' || $heroAppBase === '.') {
+    $heroAppBase = '';
+}
 ?>
 
 <div class="hero-text">
@@ -58,6 +67,10 @@ $slides = $conn
 
 /* Line 1 stays left */
 .hero-text h1 .line1 {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    font-size: clamp(18px, 6vw, 70px);
     text-align: center;
 }
 
@@ -113,6 +126,7 @@ $slides = $conn
 @media (max-width: 768px) {
 
     #home {
+        min-height: min(720px, 88svh);
         justify-content: flex-start;   /* keep same as desktop */
         text-align: left;              /* keep same as desktop */
         padding: 0 6%;                 /* keep same as desktop */
@@ -124,12 +138,17 @@ $slides = $conn
 
     .hero-text h1 {
         text-align: left;              /* keep same as desktop */
-        font-size: 26px;               /* smaller on mobile */
+        font-size: clamp(24px, 8vw, 42px); /* smaller on mobile */
         text-transform: uppercase;     /* capital letters */
     }
 
     .hero-text h1 .line2 {
-        font-size: 32px;               /* smaller on mobile */
+        font-size: clamp(30px, 10vw, 52px); /* smaller on mobile */
+        overflow-wrap: anywhere;
+    }
+
+    .hero-text h1 .line1 {
+        font-size: clamp(18px, 7vw, 42px);
     }
 
     .hero-text p {
@@ -140,6 +159,9 @@ $slides = $conn
 
     .hero-btn {
         display: inline-block;         /* keep same as desktop */
+        max-width: 100%;
+        padding: 13px 22px;
+        overflow-wrap: anywhere;
     }
 }
 
@@ -155,12 +177,16 @@ let current = 0;
 function changeHero() {
     const slide = heroSlides[current];
 
-    // ✅ FIXED IMAGE PATH
-    document.querySelector("#home").style.backgroundImage = `url('/${slide.image}')`;
+    const imagePath = String(slide.image || '').replace(/^\/+/, '');
+    const imageUrl = /^(https?:)?\/\//i.test(slide.image || '')
+        ? slide.image
+        : <?= json_encode($heroAppBase) ?> + '/' + imagePath;
+
+    document.querySelector("#home").style.backgroundImage = `url('${imageUrl}')`;
 
     /* Safety fallback if image missing */
     if (!slide.image) {
-        document.querySelector("#home").style.backgroundImage = `url('/uploads/default.jpg')`;
+        document.querySelector("#home").style.backgroundImage = `url('<?= htmlspecialchars($heroAppBase, ENT_QUOTES, 'UTF-8') ?>/uploads/default.jpg')`;
     }
 
     /* Split main_title into two lines */

@@ -1,6 +1,13 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+$siteAppBase = rtrim(dirname(str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '')), '/');
+if (basename($siteAppBase) === 'users') {
+  $siteAppBase = dirname($siteAppBase);
+}
+if ($siteAppBase === '/' || $siteAppBase === '.') {
+  $siteAppBase = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,6 +124,14 @@ h2,h3{color:var(--accent);text-align:center;}
 @media(max-width:900px){
     .hero-content{grid-template-columns:1fr;text-align:center;padding-top:140px;}
     .hero-visual{display:none;}
+}
+
+@media(max-width:600px){
+  .container{padding-left:14px;padding-right:14px;}
+  .page-wrapper{width:100%;border-radius:10px;}
+  section{padding:22px 0;}
+  img,video,iframe{max-width:100%;}
+  body{overflow-x:hidden;}
 }
 
 .whatsapp-float{
@@ -252,24 +267,24 @@ h2,h3{color:var(--accent);text-align:center;}
    <i class="fab fa-whatsapp"></i>
 </a>
 
-    <?php include __DIR__ . "/users/header.php"; ?>
+    <?php include __DIR__ . "/header.php"; ?>
 <div class="page-wrapper">
     <!-- HERO -->
     <section id="home">
       <div class="container">
-        <?php include __DIR__ . "/users/hero.php"; ?>
+        <?php include __DIR__ . "/hero.php"; ?>
       </div>
     </section>
 
 <section id="hero-tools">
-    <?php include __DIR__ . "/users/hero_tools.php"; ?>
+    <?php include __DIR__ . "/hero_tools.php"; ?>
 </section>
 <div class="fancy-divider"></div>
 
     <!-- ABOUT -->
     <section id="about">
       <div class="container">
-        <?php include __DIR__ . "/users/about.php"; ?>
+        <?php include __DIR__ . "/about.php"; ?>
       </div>
     </section>
 <div class="fancy-divider"></div>
@@ -277,7 +292,7 @@ h2,h3{color:var(--accent);text-align:center;}
     <!-- SERVICES -->
     <section id="services">
       <div class="container">
-        <?php include __DIR__ . "/users/services.php"; ?>
+        <?php include __DIR__ . "/services.php"; ?>
       </div>
     </section>
 <div class="fancy-divider"></div>
@@ -316,7 +331,7 @@ h2,h3{color:var(--accent);text-align:center;}
     <!-- PORTFOLIO -->
     <section id="products">
       <div class="container">
-        <?php include __DIR__ . "/users/portfolio.php"; ?>
+        <?php include __DIR__ . "/portfolio.php"; ?>
       </div>
     </section>
 <div class="fancy-divider"></div>
@@ -324,7 +339,7 @@ h2,h3{color:var(--accent);text-align:center;}
     <!-- CONTACT -->
     <section id="contact">
       <div class="container">
-        <?php include __DIR__ . "/users/contact.php"; ?>
+        <?php include __DIR__ . "/contact.php"; ?>
       </div>
     </section>
 <div class="fancy-divider"></div>
@@ -332,7 +347,7 @@ h2,h3{color:var(--accent);text-align:center;}
     <!-- FEEDBACK DISPLAY -->
     <section id="feedback">
       <div class="container">
-        <?php include __DIR__ . "/users/feedback_display.php"; ?>
+        <?php include __DIR__ . "/feedback_display.php"; ?>
       </div>
     </section></div> 
 <div class="fancy-divider"></div>
@@ -398,8 +413,8 @@ h2,h3{color:var(--accent);text-align:center;}
        <!-- Legal -->
        <div class="footer-legal">
         <h3>Legal</h3>
-        <a href="/hivex-labs/users/privacy.php">Privacy Policy</a><br>
-        <a href="/hivex-labs/users/terms.php">Terms of Service</a>
+        <a href="<?= htmlspecialchars($siteAppBase, ENT_QUOTES, 'UTF-8') ?>/users/privacy.php">Privacy Policy</a><br>
+        <a href="<?= htmlspecialchars($siteAppBase, ENT_QUOTES, 'UTF-8') ?>/users/terms.php">Terms of Service</a>
        </div>
 
     </div>
@@ -411,6 +426,8 @@ h2,h3{color:var(--accent);text-align:center;}
   </div>
 </div>
 </footer>
+
+<?php include __DIR__ . "/../includes/cookie-consent.php"; ?>
 
 <style>
 /* =========================

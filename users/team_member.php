@@ -141,5 +141,6 @@ body{
     </div>
 </div>
 
+<?php include __DIR__ . "/../includes/cookie-consent.php"; ?>
 </body>
 </html>

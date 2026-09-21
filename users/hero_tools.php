@@ -4,18 +4,37 @@ require_once __DIR__ . "/../config/db.php";
 $tools = $conn
     ->query("SELECT * FROM hero_tools WHERE status='active' ORDER BY id ASC")
     ->fetch_all(MYSQLI_ASSOC);
+
+$toolsScriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+$toolsAppBase = rtrim(dirname($toolsScriptPath), '/');
+if (basename($toolsAppBase) === 'users') {
+    $toolsAppBase = dirname($toolsAppBase);
+}
+if ($toolsAppBase === '/' || $toolsAppBase === '.') {
+    $toolsAppBase = '';
+}
+
+function heroToolImageUrl(string $path, string $appBase): string
+{
+    if (preg_match('#^(https?:)?//#i', $path)) {
+        return $path;
+    }
+
+    $segments = array_map('rawurlencode', array_filter(explode('/', ltrim($path, '/')), 'strlen'));
+    return $appBase . '/' . implode('/', $segments);
+}
 ?>
 
 <div class="marquee-container">
     <div class="marquee-track">
         <?php foreach($tools as $tool): ?>
-            <img src="/hivex-labs/<?= htmlspecialchars($tool['logo']) ?>" 
+            <img src="<?= htmlspecialchars(heroToolImageUrl($tool['logo'], $toolsAppBase), ENT_QUOTES, 'UTF-8') ?>"
                  alt="<?= htmlspecialchars($tool['name']) ?>">
         <?php endforeach; ?>
 
         <!-- Duplicate for seamless loop -->
         <?php foreach($tools as $tool): ?>
-            <img src="/hivex-labs/<?= htmlspecialchars($tool['logo']) ?>" 
+            <img src="<?= htmlspecialchars(heroToolImageUrl($tool['logo'], $toolsAppBase), ENT_QUOTES, 'UTF-8') ?>"
                  alt="<?= htmlspecialchars($tool['name']) ?>">
         <?php endforeach; ?>
     </div>

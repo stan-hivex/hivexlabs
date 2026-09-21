@@ -17,6 +17,25 @@ $stmt = $conn->prepare(
 $stmt->bind_param("s", $active);
 $stmt->execute();
 $projects = $stmt->get_result();
+
+$portfolioScriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+$portfolioAppBase = rtrim(dirname($portfolioScriptPath), '/');
+if (basename($portfolioAppBase) === 'users') {
+    $portfolioAppBase = dirname($portfolioAppBase);
+}
+if ($portfolioAppBase === '/' || $portfolioAppBase === '.') {
+    $portfolioAppBase = '';
+}
+
+function portfolioImageUrl(string $path, string $appBase): string
+{
+    if (preg_match('#^(https?:)?//#i', $path)) {
+        return $path;
+    }
+
+    $segments = array_map('rawurlencode', array_filter(explode('/', ltrim($path, '/')), 'strlen'));
+    return $appBase . '/' . implode('/', $segments);
+}
 ?>
 
 <section id="portfolio">
@@ -55,12 +74,12 @@ $projects = $stmt->get_result();
                     <?php if(!empty($p['link'])): ?>
                         <a href="<?= htmlspecialchars($p['link']) ?>" target="_blank">
                             <img loading="lazy"
-                                 src="/hivex-labs/uploads/projects/<?= htmlspecialchars($project['image']) ?>"
-                                 alt="<?= htmlspecialchars($project['title']) ?>">
+                                 src="<?= htmlspecialchars(portfolioImageUrl('uploads/projects/' . $p['image'], $portfolioAppBase), ENT_QUOTES, 'UTF-8') ?>"
+                                 alt="<?= htmlspecialchars($p['title']) ?>">
                         </a>
                     <?php else: ?>
                         <img loading="lazy"
-                             src="/hivex-labs/uploads/projects/<?= htmlspecialchars($project['image']) ?>"
+                                src="<?= htmlspecialchars(portfolioImageUrl('uploads/projects/' . $p['image'], $portfolioAppBase), ENT_QUOTES, 'UTF-8') ?>"
                              alt="<?= htmlspecialchars($p['title']) ?>">
                     <?php endif; ?>
 
@@ -214,8 +233,10 @@ $projects = $stmt->get_result();
 
 /* Mobile tweaks */
 @media(max-width:768px){
+    .portfolio{padding:42px 14px;}
+    .portfolio .container{padding:26px 14px; border-radius:14px;}
     .project-big{
-        width:85%;
+        width:min(86vw, 320px);
     }
     .filters select{
         display:block;

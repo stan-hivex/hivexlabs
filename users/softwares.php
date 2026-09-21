@@ -23,6 +23,10 @@ function asset_path($path) {
         $appRoot = '';
     }
 
+    if ($appRoot === '' && strpos($scriptName, '/hivex-labs/') !== false) {
+        $appRoot = '/hivex-labs';
+    }
+
     return ($appRoot === '' ? '' : $appRoot) . '/' . $path;
 }
 
@@ -177,6 +181,10 @@ $softwares = $conn->query("SELECT * FROM product_content ORDER BY created_at DES
     gap:24px;
 }
 @media (max-width:768px){
-    .softwares-list{grid-template-columns:1fr;}
+    #softwares{padding:52px 14px;}
+    #softwares .section-container{padding:26px 14px; border-radius:14px;}
+    .softwares-list{grid-template-columns:1fr; gap:16px;}
+    .software-card{padding:20px; min-height:0;}
+    .softwares h2{font-size:clamp(24px, 8vw, 32px); margin-bottom:32px;}
 }
 </style>
